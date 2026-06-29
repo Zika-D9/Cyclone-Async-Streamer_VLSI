@@ -1,0 +1,113 @@
+`timescale 1ns / 1ps
+
+module uart_tx_fsm_TB;
+
+    // -----------------------------------------------------------------
+    // Signals Declaration
+    // -----------------------------------------------------------------
+    reg         clk_TB;
+    reg         rst_n_TB;
+    reg         baud_tick_TB;
+    reg         fifo_empty_TB;
+    reg  [15:0] fifo_data_TB;
+    
+    wire        fifo_rinc_TB;
+    wire        tx_serial_TB;
+    wire        tx_busy_TB;
+
+    // Internal integer for loop counting
+    integer i;
+
+    // -----------------------------------------------------------------
+    // Unit Under Test (UUT) Instantiation
+    // -----------------------------------------------------------------
+    uart_tx_fsm uut (
+        .clk        (clk_TB),
+        .rst_n      (rst_n_TB),
+        .baud_tick  (baud_tick_TB),
+        .fifo_empty (fifo_empty_TB),
+        .fifo_data  (fifo_data_TB),
+        
+        .fifo_rinc  (fifo_rinc_TB),
+        .tx_serial  (tx_serial_TB),
+        .tx_busy    (tx_busy_TB)
+    );
+
+    // -----------------------------------------------------------------
+    // Clock Generation (10ns period -> 100MHz equivalent for this test)
+    // -----------------------------------------------------------------
+    always #5 clk_TB = ~clk_TB;
+
+    // -----------------------------------------------------------------
+    // Fake Baud Tick Generator
+    // -----------------------------------------------------------------
+    // Generates a single-cycle pulse every 4 clock cycles to speed up simulation
+    always begin
+        baud_tick_TB = 1'b0;
+        repeat(3) @(posedge clk_TB);
+        baud_tick_TB = 1'b1;
+        @(posedge clk_TB);
+    end
+
+    // -----------------------------------------------------------------
+    // Main Test Stimulus
+    // -----------------------------------------------------------------
+    initial begin
+        // --- Phase 1: System Reset ---
+        clk_TB        = 1'b0;
+        rst_n_TB      = 1'b0;
+        fifo_empty_TB = 1'b1; // Start with empty FIFO
+        fifo_data_TB  = 16'd0;
+        
+        // Hold reset for a few cycles
+        repeat(2) @(posedge clk_TB);
+        rst_n_TB = 1'b1;
+        @(posedge clk_TB);
+
+        // --- Phase 2: Transmit First Word (0x1234) ---
+        $display("Sending first word: 16'h1234");
+        // Simulate data appearing on the FIFO output (FWFT behavior)
+        fifo_data_TB  = 16'h1234; // Binary: 0001_0010_0011_0100
+        fifo_empty_TB = 1'b0;     // Drop the empty flag to trigger the FSM
+        
+        // Wait for the FSM to consume the data (rinc goes high)
+        @(posedge clk_TB);
+        while (fifo_rinc_TB == 1'b0) @(posedge clk_TB);
+        
+        // Once consumed, immediately raise empty flag to prevent a second read
+        fifo_empty_TB = 1'b1; 
+        
+        // Wait until the entire frame is transmitted (busy falls to 0)
+        @(negedge tx_busy_TB);
+        repeat(5) @(posedge clk_TB);
+
+        // --- Phase 3: Transmit Second Word (0xAA55) ---
+        $display("Sending second word: 16'hAA55");
+        fifo_data_TB  = 16'hAA55; // Binary: 1010_1010_0101_0101
+        fifo_empty_TB = 1'b0;
+        
+        @(posedge clk_TB);
+        while (fifo_rinc_TB == 1'b0) @(posedge clk_TB);
+        fifo_empty_TB = 1'b1;
+        
+        @(negedge tx_busy_TB);
+        repeat(10) @(posedge clk_TB);
+
+        // --- End of Simulation ---
+        $display("========================================");
+        $display("       UART TX FSM SIMULATION COMPLETE  ");
+        $display("========================================");
+        $stop;
+    end
+
+    // -----------------------------------------------------------------
+    // Console Monitor
+    // -----------------------------------------------------------------
+    initial begin
+        $display("  Time  | rst_n | fifo_empty | fifo_data | fifo_rinc || state | tx_busy | tx_serial ");
+        $display("--------------------------------------------------------------------------------------");
+        $monitor("%7t |   %b   |      %b     |   %4h    |     %b     ||   %d   |    %b    |     %b     ", 
+                 $time, rst_n_TB, fifo_empty_TB, fifo_data_TB, fifo_rinc_TB, uut.state, tx_busy_TB, tx_serial_TB);
+    end
+
+endmodule

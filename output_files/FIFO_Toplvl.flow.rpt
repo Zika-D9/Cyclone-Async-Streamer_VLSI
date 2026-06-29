@@ -1,5 +1,5 @@
 Flow report for FIFO_Toplvl
-Mon Jun 29 17:32:24 2026
+Mon Jun 29 20:19:19 2026
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -41,20 +41,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Jun 29 17:32:21 2026       ;
+; Flow Status                        ; Successful - Mon Jun 29 20:19:16 2026       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; FIFO_Toplvl                                 ;
-; Top-level Entity Name              ; async_fifo_top                              ;
+; Top-level Entity Name              ; uart_tx_fsm                                 ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE115F29C7                               ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 67 / 114,480 ( < 1 % )                      ;
-;     Total combinational functions  ; 52 / 114,480 ( < 1 % )                      ;
-;     Dedicated logic registers      ; 65 / 114,480 ( < 1 % )                      ;
-; Total registers                    ; 65                                          ;
-; Total pins                         ; 40 / 529 ( 8 % )                            ;
+; Total logic elements               ; 41 / 114,480 ( < 1 % )                      ;
+;     Total combinational functions  ; 40 / 114,480 ( < 1 % )                      ;
+;     Dedicated logic registers      ; 27 / 114,480 ( < 1 % )                      ;
+; Total registers                    ; 27                                          ;
+; Total pins                         ; 23 / 529 ( 4 % )                            ;
 ; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 512 / 3,981,312 ( < 1 % )                   ;
+; Total memory bits                  ; 0 / 3,981,312 ( 0 % )                       ;
 ; Embedded Multiplier 9-bit elements ; 0 / 532 ( 0 % )                             ;
 ; Total PLLs                         ; 0 / 4 ( 0 % )                               ;
 +------------------------------------+---------------------------------------------+
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/29/2026 17:31:42 ;
+; Start date & time ; 06/29/2026 20:18:39 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; FIFO_Toplvl         ;
 +-------------------+---------------------+
@@ -76,15 +76,15 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+------------------------------------------------------------------------+---------------+----------------------+------------+
 ; Assignment Name                     ; Value                                                                  ; Default Value ; Entity Name          ; Section Id ;
 +-------------------------------------+------------------------------------------------------------------------+---------------+----------------------+------------+
-; COMPILER_SIGNATURE_ID               ; 51249035334615.178274350251568                                         ; --            ; --                   ; --         ;
+; COMPILER_SIGNATURE_ID               ; 51249035334615.178275351952820                                         ; --            ; --                   ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                                                     ; --            ; --                   ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                                                      ; --            ; --                   ; --         ;
 ; MISC_FILE                           ; clk_gater_ALTCLKCTRL/synthesis/../clk_gater_ALTCLKCTRL.cmp             ; --            ; --                   ; --         ;
 ; MISC_FILE                           ; clk_gater_ALTCLKCTRL/synthesis/../../clk_gater_ALTCLKCTRL.qsys         ; --            ; --                   ; --         ;
 ; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                                                   ; --            ; --                   ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family)                                 ; --            ; async_fifo_top       ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                                 ; --            ; async_fifo_top       ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                                 ; --            ; async_fifo_top       ; Top        ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                                 ; --            ; uart_tx_fsm          ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                                 ; --            ; uart_tx_fsm          ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                                 ; --            ; uart_tx_fsm          ; Top        ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                                    ; --            ; --                   ; --         ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                  ; --            ; --                   ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                                                           ; --            ; --                   ; --         ;
@@ -92,7 +92,7 @@ https://fpgasoftware.intel.com/eula.
 ; SLD_INFO                            ; QSYS_NAME clk_gater_ALTCLKCTRL HAS_SOPCINFO 1 GENERATION_ID 1782649071 ; --            ; clk_gater_ALTCLKCTRL ; --         ;
 ; SOPCINFO_FILE                       ; clk_gater_ALTCLKCTRL/synthesis/../../clk_gater_ALTCLKCTRL.sopcinfo     ; --            ; --                   ; --         ;
 ; SYNTHESIS_ONLY_QIP                  ; On                                                                     ; --            ; --                   ; --         ;
-; TOP_LEVEL_ENTITY                    ; async_fifo_top                                                         ; FIFO_Toplvl   ; --                   ; --         ;
+; TOP_LEVEL_ENTITY                    ; uart_tx_fsm                                                            ; FIFO_Toplvl   ; --                   ; --         ;
 +-------------------------------------+------------------------------------------------------------------------+---------------+----------------------+------------+
 
 
@@ -101,11 +101,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4847 MB             ; 00:00:28                           ;
-; Fitter               ; 00:00:22     ; 1.0                     ; 6701 MB             ; 00:00:34                           ;
-; Assembler            ; 00:00:05     ; 1.0                     ; 4694 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.1                     ; 4998 MB             ; 00:00:02                           ;
-; Total                ; 00:00:40     ; --                      ; --                  ; 00:01:08                           ;
+; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 4837 MB             ; 00:00:27                           ;
+; Fitter               ; 00:00:20     ; 1.0                     ; 6698 MB             ; 00:00:32                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4694 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.1                     ; 4985 MB             ; 00:00:02                           ;
+; Total                ; 00:00:36     ; --                      ; --                  ; 00:01:05                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

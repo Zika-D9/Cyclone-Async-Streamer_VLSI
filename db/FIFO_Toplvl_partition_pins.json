@@ -4,163 +4,95 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "wfull",
+					"name" : "fifo_rinc",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[0]",
+					"name" : "tx_serial",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[1]",
+					"name" : "tx_busy",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[2]",
+					"name" : "fifo_empty",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[3]",
+					"name" : "clk",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[4]",
+					"name" : "rst_n",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[5]",
+					"name" : "baud_tick",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[6]",
+					"name" : "fifo_data[0]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[7]",
+					"name" : "fifo_data[1]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[8]",
+					"name" : "fifo_data[2]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[9]",
+					"name" : "fifo_data[3]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[10]",
+					"name" : "fifo_data[4]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[11]",
+					"name" : "fifo_data[5]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[12]",
+					"name" : "fifo_data[6]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[13]",
+					"name" : "fifo_data[7]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[14]",
+					"name" : "fifo_data[8]",
 					"strict" : false
 				},
 				{
-					"name" : "rdata[15]",
+					"name" : "fifo_data[9]",
 					"strict" : false
 				},
 				{
-					"name" : "rempty",
+					"name" : "fifo_data[10]",
 					"strict" : false
 				},
 				{
-					"name" : "wr_en",
+					"name" : "fifo_data[11]",
 					"strict" : false
 				},
 				{
-					"name" : "wclk",
+					"name" : "fifo_data[12]",
 					"strict" : false
 				},
 				{
-					"name" : "wrst_n",
+					"name" : "fifo_data[13]",
 					"strict" : false
 				},
 				{
-					"name" : "rclk",
+					"name" : "fifo_data[14]",
 					"strict" : false
 				},
 				{
-					"name" : "wdata[0]",
-					"strict" : false
-				},
-				{
-					"name" : "rd_en",
-					"strict" : false
-				},
-				{
-					"name" : "rrst_n",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[1]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[2]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[3]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[4]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[5]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[6]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[7]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[8]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[9]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[10]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[11]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[12]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[13]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[14]",
-					"strict" : false
-				},
-				{
-					"name" : "wdata[15]",
+					"name" : "fifo_data[15]",
 					"strict" : false
 				}
 			]
