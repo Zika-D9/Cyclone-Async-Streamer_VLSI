@@ -1,5 +1,5 @@
 module TwoFF_Sync #(
-    parameter WIDTH = 5
+    parameter WIDTH = 6
 )(
     input  wire             clk,
     input  wire             rst_n,

@@ -1,0 +1,134 @@
+`timescale 1ns / 1ps
+
+module async_fifo_top_TB;
+
+    // -----------------------------------------------------------------
+    // Parameters
+    // -----------------------------------------------------------------
+    localparam DATA_WIDTH_TB = 16;
+    localparam DEPTH_TB = 32;
+
+    // -----------------------------------------------------------------
+    // Signals Declaration
+    // -----------------------------------------------------------------
+    // Write Domain
+    reg  wclk_TB;
+    reg  wrst_n_TB;
+    reg  wr_en_TB;
+    reg  [DATA_WIDTH_TB-1:0] wdata_TB;
+    wire wfull_TB;
+
+    // Read Domain
+    reg  rclk_TB;
+    reg  rrst_n_TB;
+    reg  rd_en_TB;
+    wire [DATA_WIDTH_TB-1:0] rdata_TB;
+    wire rempty_TB;
+
+    integer i;
+
+    // -----------------------------------------------------------------
+    // Unit Under Test (UUT) Instantiation
+    // -----------------------------------------------------------------
+    async_fifo_top #(
+        .DATA_WIDTH(DATA_WIDTH_TB),
+        .DEPTH(DEPTH_TB)
+    ) uut (
+        .wclk   (wclk_TB),
+        .wrst_n (wrst_n_TB),
+        .wr_en  (wr_en_TB),
+        .wdata  (wdata_TB),
+        .wfull  (wfull_TB),
+        
+        .rclk   (rclk_TB),
+        .rrst_n (rrst_n_TB),
+        .rd_en  (rd_en_TB),
+        .rdata  (rdata_TB),
+        .rempty (rempty_TB)
+    );
+
+    // -----------------------------------------------------------------
+    // Clock Generation
+    // -----------------------------------------------------------------
+    // Fast Write Clock: 10ns period (100 MHz)
+    always #5 wclk_TB = ~wclk_TB;
+    
+    // Slow Read Clock: 26ns period (~38.4 MHz). 
+    // Purposefully chosen to not be a perfect multiple of the write clock 
+    // to simulate real asynchronous behavior.
+    always #13 rclk_TB = ~rclk_TB;
+
+    // -----------------------------------------------------------------
+    // Main Test Stimulus
+    // -----------------------------------------------------------------
+    initial begin
+        // --- Phase 1: System Reset ---
+        $display("Applying reset to both domains...");
+        wclk_TB   = 1'b0;
+        wrst_n_TB = 1'b0;
+        wr_en_TB  = 1'b0;
+        wdata_TB  = 16'd0;
+
+        rclk_TB   = 1'b0;
+        rrst_n_TB = 1'b0;
+        rd_en_TB  = 1'b0;
+
+        // Hold reset for a sufficient time
+        #100;
+        wrst_n_TB = 1'b1;
+        rrst_n_TB = 1'b1;
+        #50;
+
+        // --- Phase 2: Fill the FIFO (Write Burst) ---
+        $display("Phase 2: Filling the FIFO...");
+        @(posedge wclk_TB);
+        wr_en_TB = 1'b1;
+        
+        // Write exactly 32 words to fill the memory
+        for (i = 0; i < 32; i = i + 1) begin
+            wdata_TB = i + 100; // Write values 100, 101, 102...
+            @(posedge wclk_TB);
+        end
+        wr_en_TB = 1'b0; // De-assert write enable
+        
+        // Wait a bit to observe the wfull flag and the synchronizer delay
+        #200; 
+
+        // --- Phase 3: Empty the FIFO (Read Burst) ---
+        $display("Phase 3: Emptying the FIFO...");
+        @(posedge rclk_TB);
+        rd_en_TB = 1'b1;
+        
+        // Read 32 words out
+        for (i = 0; i < 32; i = i + 1) begin
+            @(posedge rclk_TB);
+        end
+        rd_en_TB = 1'b0; // De-assert read enable
+        
+        // Wait to observe the rempty flag and the synchronizer delay
+        #200;
+
+        // --- Phase 4: Concurrent Read and Write Stress Test ---
+        $display("Phase 4: Concurrent Read and Write...");
+        @(posedge wclk_TB);
+        wr_en_TB = 1'b1;
+        wdata_TB = 16'hAAAA;
+        
+        // Wait a few cycles, then start reading while still writing
+        #50;
+        @(posedge rclk_TB);
+        rd_en_TB = 1'b1;
+
+        #300;
+        wr_en_TB = 1'b0;
+        rd_en_TB = 1'b0;
+
+        // --- End of Simulation ---
+        #100;
+        $display("========================================");
+        $display("   ASYNC FIFO TOP SIMULATION COMPLETE   ");
+        $display("========================================");
+        $stop;
+    end
+
+endmodule

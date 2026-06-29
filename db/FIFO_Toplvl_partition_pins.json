@@ -4,39 +4,71 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "rd_addr[0]",
+					"name" : "wfull",
 					"strict" : false
 				},
 				{
-					"name" : "rd_addr[1]",
+					"name" : "rdata[0]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_addr[2]",
+					"name" : "rdata[1]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_addr[3]",
+					"name" : "rdata[2]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_ptr_gray[0]",
+					"name" : "rdata[3]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_ptr_gray[1]",
+					"name" : "rdata[4]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_ptr_gray[2]",
+					"name" : "rdata[5]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_ptr_gray[3]",
+					"name" : "rdata[6]",
 					"strict" : false
 				},
 				{
-					"name" : "rd_ptr_gray[4]",
+					"name" : "rdata[7]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[8]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[9]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[10]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[11]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[12]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[13]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[14]",
+					"strict" : false
+				},
+				{
+					"name" : "rdata[15]",
 					"strict" : false
 				},
 				{
@@ -44,7 +76,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "rd_en",
+					"name" : "wr_en",
+					"strict" : false
+				},
+				{
+					"name" : "wclk",
+					"strict" : false
+				},
+				{
+					"name" : "wrst_n",
 					"strict" : false
 				},
 				{
@@ -52,27 +92,75 @@
 					"strict" : false
 				},
 				{
+					"name" : "wdata[0]",
+					"strict" : false
+				},
+				{
+					"name" : "rd_en",
+					"strict" : false
+				},
+				{
 					"name" : "rrst_n",
 					"strict" : false
 				},
 				{
-					"name" : "wr_ptr_gray_sync[4]",
+					"name" : "wdata[1]",
 					"strict" : false
 				},
 				{
-					"name" : "wr_ptr_gray_sync[3]",
+					"name" : "wdata[2]",
 					"strict" : false
 				},
 				{
-					"name" : "wr_ptr_gray_sync[2]",
+					"name" : "wdata[3]",
 					"strict" : false
 				},
 				{
-					"name" : "wr_ptr_gray_sync[0]",
+					"name" : "wdata[4]",
 					"strict" : false
 				},
 				{
-					"name" : "wr_ptr_gray_sync[1]",
+					"name" : "wdata[5]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[6]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[7]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[8]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[9]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[10]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[11]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[12]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[13]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[14]",
+					"strict" : false
+				},
+				{
+					"name" : "wdata[15]",
 					"strict" : false
 				}
 			]

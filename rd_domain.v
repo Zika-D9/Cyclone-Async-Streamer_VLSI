@@ -1,5 +1,5 @@
 module rd_domain #(
-    parameter ADDR_WIDTH = 4
+    parameter ADDR_WIDTH = 5
 )(
     input  wire                   rclk,             
     input  wire                   rrst_n,           

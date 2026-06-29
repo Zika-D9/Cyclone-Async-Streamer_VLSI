@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Mon Jun 29 16:14:36 2026
+Analysis & Synthesis Status : Successful - Mon Jun 29 17:31:52 2026
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : FIFO_Toplvl
-Top-level Entity Name : rd_domain
+Top-level Entity Name : async_fifo_top
 Family : Cyclone IV E
-Total logic elements : 16
-    Total combinational functions : 15
-    Dedicated logic registers : 11
-Total registers : 11
-Total pins : 18
+Total logic elements : 92
+    Total combinational functions : 51
+    Dedicated logic registers : 65
+Total registers : 65
+Total pins : 40
 Total virtual pins : 0
-Total memory bits : 0
+Total memory bits : 512
 Embedded Multiplier 9-bit elements : 0
 Total PLLs : 0

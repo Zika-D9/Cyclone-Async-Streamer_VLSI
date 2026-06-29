@@ -1,5 +1,5 @@
 module wr_domain #(
-    parameter ADDR_WIDTH = 4
+    parameter ADDR_WIDTH = 5
 )(
     input  wire                   wclk,
     input  wire                   wrst_n,
