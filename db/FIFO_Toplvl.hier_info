@@ -1,4 +1,69 @@
-|uart_tx_fsm
+|uart_top
+clk_slow => clk_slow.IN2
+rst_n => rst_n.IN2
+fifo_empty => fifo_empty.IN1
+fifo_data[0] => fifo_data[0].IN1
+fifo_data[1] => fifo_data[1].IN1
+fifo_data[2] => fifo_data[2].IN1
+fifo_data[3] => fifo_data[3].IN1
+fifo_data[4] => fifo_data[4].IN1
+fifo_data[5] => fifo_data[5].IN1
+fifo_data[6] => fifo_data[6].IN1
+fifo_data[7] => fifo_data[7].IN1
+fifo_data[8] => fifo_data[8].IN1
+fifo_data[9] => fifo_data[9].IN1
+fifo_data[10] => fifo_data[10].IN1
+fifo_data[11] => fifo_data[11].IN1
+fifo_data[12] => fifo_data[12].IN1
+fifo_data[13] => fifo_data[13].IN1
+fifo_data[14] => fifo_data[14].IN1
+fifo_data[15] => fifo_data[15].IN1
+fifo_rinc << uart_tx_fsm:fsm_inst.fifo_rinc
+tx_serial << uart_tx_fsm:fsm_inst.tx_serial
+tx_busy << tx_busy.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uart_top|baud_gen:baud_gen_inst
+clk => tick~reg0.CLK
+clk => baud_cnt[0].CLK
+clk => baud_cnt[1].CLK
+clk => baud_cnt[2].CLK
+clk => baud_cnt[3].CLK
+clk => baud_cnt[4].CLK
+clk => baud_cnt[5].CLK
+clk => baud_cnt[6].CLK
+clk => baud_cnt[7].CLK
+clk => baud_cnt[8].CLK
+clk => baud_cnt[9].CLK
+clk => baud_cnt[10].CLK
+rst_n => tick~reg0.ACLR
+rst_n => baud_cnt[0].ACLR
+rst_n => baud_cnt[1].ACLR
+rst_n => baud_cnt[2].ACLR
+rst_n => baud_cnt[3].ACLR
+rst_n => baud_cnt[4].ACLR
+rst_n => baud_cnt[5].ACLR
+rst_n => baud_cnt[6].ACLR
+rst_n => baud_cnt[7].ACLR
+rst_n => baud_cnt[8].ACLR
+rst_n => baud_cnt[9].ACLR
+rst_n => baud_cnt[10].ACLR
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => baud_cnt.OUTPUTSELECT
+en => tick.OUTPUTSELECT
+tick <= tick~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|uart_top|uart_tx_fsm:fsm_inst
 clk => bit_cnt[0].CLK
 clk => bit_cnt[1].CLK
 clk => bit_cnt[2].CLK

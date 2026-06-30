@@ -20,15 +20,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "clk",
+					"name" : "clk_slow",
 					"strict" : false
 				},
 				{
 					"name" : "rst_n",
-					"strict" : false
-				},
-				{
-					"name" : "baud_tick",
 					"strict" : false
 				},
 				{

@@ -1,0 +1,86 @@
+`timescale 1ns / 1ps
+
+module uart_top_TB;
+
+    localparam CLK_FREQ_TB  = 10_000_000;
+    localparam BAUD_RATE_TB = 9600;
+
+    reg         clk_slow_TB;
+    reg         rst_n_TB;
+    reg         fifo_empty_TB;
+    reg  [15:0] fifo_data_TB;
+    
+    wire        fifo_rinc_TB;
+    wire        tx_serial_TB;
+    wire        tx_busy_TB;
+
+    uart_top #(
+        .CLK_FREQ(CLK_FREQ_TB),
+        .BAUD_RATE(BAUD_RATE_TB)
+    ) uut (
+        .clk_slow   (clk_slow_TB),
+        .rst_n      (rst_n_TB),
+        .fifo_empty (fifo_empty_TB),
+        .fifo_data  (fifo_data_TB),
+        .fifo_rinc  (fifo_rinc_TB),
+        .tx_serial  (tx_serial_TB),
+        .tx_busy    (tx_busy_TB)
+    );
+
+    always #5 clk_slow_TB = ~clk_slow_TB;
+
+    initial begin
+        clk_slow_TB   = 0;
+        rst_n_TB      = 0;
+        fifo_empty_TB = 1;
+        fifo_data_TB  = 0;
+
+        #20 rst_n_TB = 1;
+        #20;
+
+        $display("\nSending first word: 16'h1234");
+        fifo_data_TB  = 16'h1234;
+        fifo_empty_TB = 0;
+        @(posedge clk_slow_TB);
+        while (!fifo_rinc_TB) @(posedge clk_slow_TB);
+        fifo_empty_TB = 1; 
+
+        @(negedge tx_busy_TB);
+        #100;
+
+        $display("\nSending second word: 16'hAA55");
+        fifo_data_TB  = 16'hAA55;
+        fifo_empty_TB = 0;
+        @(posedge clk_slow_TB);
+        while (!fifo_rinc_TB) @(posedge clk_slow_TB);
+        fifo_empty_TB = 1;
+
+        @(negedge tx_busy_TB);
+        #100;
+
+        $display("\nSIMULATION COMPLETE");
+        $stop;
+    end
+
+    reg [15:0] reconstructed_data;
+
+    always @(posedge clk_slow_TB) begin
+        if (uut.baud_tick) begin
+            
+            if (uut.fsm_inst.state == 3'd2) begin 
+                reconstructed_data[uut.fsm_inst.bit_cnt] <= tx_serial_TB;
+            end
+            
+            if (uut.fsm_inst.state == 3'd3) begin 
+                $display("Time: %7t | Original Data: %4h | Reconstructed: %4h", 
+                         $time, fifo_data_TB, reconstructed_data);
+                
+                if (reconstructed_data === fifo_data_TB)
+                    $display(">>> [PASS] Verification Successful!");
+                else
+                    $display(">>> [FAIL] Data Mismatch!");
+            end
+        end
+    end
+
+endmodule

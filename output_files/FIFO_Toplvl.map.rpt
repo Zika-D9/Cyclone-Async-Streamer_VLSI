@@ -1,5 +1,5 @@
 Analysis & Synthesis report for FIFO_Toplvl
-Mon Jun 29 20:18:49 2026
+Tue Jun 30 10:46:17 2026
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -13,14 +13,16 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |uart_tx_fsm|state
+  8. State Machine - |uart_top|uart_tx_fsm:fsm_inst|state
   9. Registers Removed During Synthesis
  10. General Register Statistics
  11. Inverted Register Statistics
  12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 13. Parameter Settings for User Entity Instance: Top-level Entity: |uart_top
+ 14. Parameter Settings for User Entity Instance: baud_gen:baud_gen_inst
+ 15. Post-Synthesis Netlist Statistics for Top Partition
+ 16. Elapsed Time Per Partition
+ 17. Analysis & Synthesis Messages
 
 
 
@@ -47,16 +49,16 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jun 29 20:18:49 2026       ;
+; Analysis & Synthesis Status        ; Successful - Tue Jun 30 10:46:16 2026       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; FIFO_Toplvl                                 ;
-; Top-level Entity Name              ; uart_tx_fsm                                 ;
+; Top-level Entity Name              ; uart_top                                    ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 40                                          ;
-;     Total combinational functions  ; 40                                          ;
-;     Dedicated logic registers      ; 27                                          ;
-; Total registers                    ; 27                                          ;
-; Total pins                         ; 23                                          ;
+; Total logic elements               ; 56                                          ;
+;     Total combinational functions  ; 56                                          ;
+;     Dedicated logic registers      ; 39                                          ;
+; Total registers                    ; 39                                          ;
+; Total pins                         ; 22                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -70,7 +72,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                            ; uart_tx_fsm        ; FIFO_Toplvl        ;
+; Top-level entity name                                            ; uart_top           ; FIFO_Toplvl        ;
 ; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -172,55 +174,59 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------+-------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path              ; Library ;
 +----------------------------------+-----------------+------------------------+-------------------------------------------+---------+
+; baud_gen.v                       ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/20.1/VLSI/baud_gen.v    ;         ;
 ; uart_tx_fsm.v                    ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/20.1/VLSI/uart_tx_fsm.v ;         ;
+; uart_top.v                       ; yes             ; User Verilog HDL File  ; C:/intelFPGA_lite/20.1/VLSI/uart_top.v    ;         ;
 +----------------------------------+-----------------+------------------------+-------------------------------------------+---------+
 
 
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 40        ;
-;                                             ;           ;
-; Total combinational functions               ; 40        ;
-; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 16        ;
-;     -- 3 input functions                    ; 20        ;
-;     -- <=2 input functions                  ; 4         ;
-;                                             ;           ;
-; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 40        ;
-;     -- arithmetic mode                      ; 0         ;
-;                                             ;           ;
-; Total registers                             ; 27        ;
-;     -- Dedicated logic registers            ; 27        ;
-;     -- I/O registers                        ; 0         ;
-;                                             ;           ;
-; I/O pins                                    ; 23        ;
-;                                             ;           ;
-; Embedded Multiplier 9-bit elements          ; 0         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 27        ;
-; Total fan-out                               ; 254       ;
-; Average fan-out                             ; 2.25      ;
-+---------------------------------------------+-----------+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimated Total logic elements              ; 56             ;
+;                                             ;                ;
+; Total combinational functions               ; 56             ;
+; Logic element usage by number of LUT inputs ;                ;
+;     -- 4 input functions                    ; 20             ;
+;     -- 3 input functions                    ; 21             ;
+;     -- <=2 input functions                  ; 15             ;
+;                                             ;                ;
+; Logic elements by mode                      ;                ;
+;     -- normal mode                          ; 46             ;
+;     -- arithmetic mode                      ; 10             ;
+;                                             ;                ;
+; Total registers                             ; 39             ;
+;     -- Dedicated logic registers            ; 39             ;
+;     -- I/O registers                        ; 0              ;
+;                                             ;                ;
+; I/O pins                                    ; 22             ;
+;                                             ;                ;
+; Embedded Multiplier 9-bit elements          ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; clk_slow~input ;
+; Maximum fan-out                             ; 39             ;
+; Total fan-out                               ; 340            ;
+; Average fan-out                             ; 2.45           ;
++---------------------------------------------+----------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                      ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
-; |uart_tx_fsm               ; 40 (40)             ; 27 (27)                   ; 0           ; 0            ; 0       ; 0         ; 23   ; 0            ; |uart_tx_fsm        ; uart_tx_fsm ; work         ;
-+----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+-------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                    ;
++-----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
+; Compilation Hierarchy Node  ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name              ; Entity Name ; Library Name ;
++-----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
+; |uart_top                   ; 56 (0)              ; 39 (0)                    ; 0           ; 0            ; 0       ; 0         ; 22   ; 0            ; |uart_top                        ; uart_top    ; work         ;
+;    |baud_gen:baud_gen_inst| ; 16 (16)             ; 12 (12)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_top|baud_gen:baud_gen_inst ; baud_gen    ; work         ;
+;    |uart_tx_fsm:fsm_inst|   ; 40 (40)             ; 27 (27)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |uart_top|uart_tx_fsm:fsm_inst   ; uart_tx_fsm ; work         ;
++-----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
 +------------------------------------------------------------------+
-; State Machine - |uart_tx_fsm|state                               ;
+; State Machine - |uart_top|uart_tx_fsm:fsm_inst|state             ;
 +-------------+------------+------------+-------------+------------+
 ; Name        ; state.STOP ; state.DATA ; state.START ; state.IDLE ;
 +-------------+------------+------------+-------------+------------+
@@ -236,9 +242,9 @@ Encoding Type:  One-Hot
 +---------------------------------------+--------------------+
 ; Register name                         ; Reason for Removal ;
 +---------------------------------------+--------------------+
-; state~8                               ; Lost fanout        ;
-; state~9                               ; Lost fanout        ;
-; state~10                              ; Lost fanout        ;
+; uart_tx_fsm:fsm_inst|state~8          ; Lost fanout        ;
+; uart_tx_fsm:fsm_inst|state~9          ; Lost fanout        ;
+; uart_tx_fsm:fsm_inst|state~10         ; Lost fanout        ;
 ; Total Number of Removed Registers = 3 ;                    ;
 +---------------------------------------+--------------------+
 
@@ -248,10 +254,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 27    ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 39    ;
+; Number of registers using Synchronous Clear  ; 11    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 27    ;
+; Number of registers using Asynchronous Clear ; 39    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 15    ;
 ; Number of registers using Preset             ; 0     ;
@@ -263,21 +269,44 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; tx_serial~reg0                         ; 1       ;
+; uart_tx_fsm:fsm_inst|tx_serial         ; 1       ;
 ; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 5:1                ; 15 bits   ; 45 LEs        ; 15 LEs               ; 30 LEs                 ; Yes        ; |uart_tx_fsm|shift_reg[0]  ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |uart_tx_fsm|bit_cnt[0]    ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |uart_tx_fsm|Selector18    ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |uart_tx_fsm|Selector17    ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+; 3:1                ; 11 bits   ; 22 LEs        ; 11 LEs               ; 11 LEs                 ; Yes        ; |uart_top|baud_gen:baud_gen_inst|baud_cnt[3] ;
+; 5:1                ; 15 bits   ; 45 LEs        ; 15 LEs               ; 30 LEs                 ; Yes        ; |uart_top|uart_tx_fsm:fsm_inst|shift_reg[0]  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |uart_top|uart_tx_fsm:fsm_inst|bit_cnt[0]    ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |uart_top|uart_tx_fsm:fsm_inst|Selector18    ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |uart_top|uart_tx_fsm:fsm_inst|Selector19    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |uart_top ;
++----------------+----------+----------------------------------------------+
+; Parameter Name ; Value    ; Type                                         ;
++----------------+----------+----------------------------------------------+
+; CLK_FREQ       ; 10000000 ; Signed Integer                               ;
+; BAUD_RATE      ; 9600     ; Signed Integer                               ;
++----------------+----------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: baud_gen:baud_gen_inst ;
++----------------+----------+-----------------------------------------+
+; Parameter Name ; Value    ; Type                                    ;
++----------------+----------+-----------------------------------------+
+; CLK_FREQ       ; 10000000 ; Signed Integer                          ;
+; BAUD_RATE      ; 9600     ; Signed Integer                          ;
++----------------+----------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-----------------------------------------------------+
@@ -285,19 +314,22 @@ Encoding Type:  One-Hot
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 23                          ;
-; cycloneiii_ff         ; 27                          ;
-;     CLR               ; 12                          ;
+; boundary_port         ; 22                          ;
+; cycloneiii_ff         ; 39                          ;
+;     CLR               ; 13                          ;
+;     CLR SCLR          ; 11                          ;
 ;     ENA CLR           ; 15                          ;
-; cycloneiii_lcell_comb ; 41                          ;
-;     normal            ; 41                          ;
-;         1 data inputs ; 1                           ;
+; cycloneiii_lcell_comb ; 57                          ;
+;     arith             ; 10                          ;
+;         2 data inputs ; 10                          ;
+;     normal            ; 47                          ;
+;         1 data inputs ; 2                           ;
 ;         2 data inputs ; 4                           ;
-;         3 data inputs ; 20                          ;
-;         4 data inputs ; 16                          ;
+;         3 data inputs ; 21                          ;
+;         4 data inputs ; 20                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 1.63                        ;
+; Average LUT depth     ; 1.69                        ;
 +-----------------------+-----------------------------+
 
 
@@ -316,7 +348,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon Jun 29 20:18:39 2026
+    Info: Processing started: Tue Jun 30 10:46:06 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FIFO_Toplvl -c FIFO_Toplvl
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
@@ -361,7 +393,14 @@ Info (12021): Found 1 design units, including 1 entities, in source file uart_tx
     Info (12023): Found entity 1: uart_tx_fsm File: C:/intelFPGA_lite/20.1/VLSI/uart_tx_fsm.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_fsm_tb.v
     Info (12023): Found entity 1: uart_tx_fsm_TB File: C:/intelFPGA_lite/20.1/VLSI/uart_tx_fsm_TB.v Line: 3
-Info (12127): Elaborating entity "uart_tx_fsm" for the top level hierarchy
+Info (12021): Found 1 design units, including 1 entities, in source file uart_top.v
+    Info (12023): Found entity 1: uart_top File: C:/intelFPGA_lite/20.1/VLSI/uart_top.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file uart_top_tb.v
+    Info (12023): Found entity 1: uart_top_TB File: C:/intelFPGA_lite/20.1/VLSI/uart_top_TB.v Line: 3
+Info (12127): Elaborating entity "uart_top" for the top level hierarchy
+Info (12128): Elaborating entity "baud_gen" for hierarchy "baud_gen:baud_gen_inst" File: C:/intelFPGA_lite/20.1/VLSI/uart_top.v Line: 25
+Warning (10230): Verilog HDL assignment warning at baud_gen.v(26): truncated value with size 32 to match size of target (11) File: C:/intelFPGA_lite/20.1/VLSI/baud_gen.v Line: 26
+Info (12128): Elaborating entity "uart_tx_fsm" for hierarchy "uart_tx_fsm:fsm_inst" File: C:/intelFPGA_lite/20.1/VLSI/uart_top.v Line: 37
 Warning (10230): Verilog HDL assignment warning at uart_tx_fsm.v(62): truncated value with size 32 to match size of target (4) File: C:/intelFPGA_lite/20.1/VLSI/uart_tx_fsm.v Line: 62
 Info (13000): Registers with preset signals will power-up high File: C:/intelFPGA_lite/20.1/VLSI/uart_tx_fsm.v Line: 9
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
@@ -371,14 +410,14 @@ Warning (20013): Ignored 16 assignments for entity "clk_gater_ALTCLKCTRL" -- ent
 Warning (20013): Ignored 14 assignments for entity "clk_gater_ALTCLKCTRL_altclkctrl_0" -- entity does not exist in design
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 64 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 20 input pins
+Info (21057): Implemented 79 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 19 input pins
     Info (21059): Implemented 3 output pins
-    Info (21061): Implemented 41 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 4837 megabytes
-    Info: Processing ended: Mon Jun 29 20:18:49 2026
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:27
+    Info (21061): Implemented 57 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
+    Info: Peak virtual memory: 4839 megabytes
+    Info: Processing ended: Tue Jun 30 10:46:17 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:28
 
 

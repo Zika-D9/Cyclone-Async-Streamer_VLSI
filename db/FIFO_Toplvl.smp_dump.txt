@@ -1,5 +1,5 @@
 
-State Machine - |uart_tx_fsm|state
+State Machine - |uart_top|uart_tx_fsm:fsm_inst|state
 Name state.STOP state.DATA state.START state.IDLE 
 state.IDLE 0 0 0 0 
 state.START 0 0 1 1 
